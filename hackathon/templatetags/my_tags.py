@@ -2,6 +2,8 @@
 # range snippet from: https://www.djangosnippets.org/snippets/1357/
 # adjusted to current project needs based on https://docs.djangoproject.com/en/3.1/howto/custom-template-tags/
 from django.template import Library
+import datetime
+from django.conf import settings
 
 register = Library()
 
@@ -25,3 +27,7 @@ def get_range(value, start):
         Instead of 3 one may use the variable set in the views
     """
     return range(start, value+1, 1)
+
+@register.filter
+def event_ended(date_event):
+    return date_event.date() >= datetime.date.today()
