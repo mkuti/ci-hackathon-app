@@ -28,6 +28,10 @@ def get_range(value, start):
     """
     return range(start, value+1, 1)
 
+
 @register.filter
 def event_ended(date_event):
+    '''Set a filter to check if hackaton has ended
+    In order to show the enroll button only for hackatons which are not ended
+    Date can be updated if organisers want to put a deadline to enrol'''
     return date_event.date() >= datetime.date.today()
